@@ -19,8 +19,17 @@ function TodoTitle({ addTodoItem }) {
 
   const addItem = () => {
     if (newTodo.trim() !== "" && datetimeValue !== "") {
-      const formattedDatetime = new Date(datetimeValue).toLocaleString();
-      addTodoItem(`${newTodo}\n(${formattedDatetime})`);
+      const selectedDate = new Date(datetimeValue);
+      const options = {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      };
+      const formattedDate = selectedDate.toLocaleString("en-GB", options);
+      addTodoItem(`${newTodo}\n(${formattedDate})`);
       resetFields();
       setAddTodo(false);
     }
